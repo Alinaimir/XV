@@ -1,13 +1,9 @@
-/*-----------------| ROOT CONSTANTS |--------------------------------------------------------------------
-    Stuff that doesn't change, mostly HTML element ID's and templates.
--------------------------------------------------------------------------------------------------------*/
-
+/*-----------------| ROOT CONSTANTS |--------------------------------------------------------------------*/
 //  Highest Priority IDs
 const ROOT = document.documentElement
 const CONTEXT = document.getElementById('context') // Bar at the top that displays hover context
 
 const WRAPPER = document.getElementById('wrapper') // Wrapper of everything but header info
-
 
 //  Control Panel
 const VOLUME_SLIDER = document.getElementById('volume_slider')
@@ -37,9 +33,6 @@ GALLERY_ITEMS.forEach(item => {
 });
 
 const BLOG_ITEMS = document.querySelectorAll('.log_list_item'); // Select all blog items
-
-
-
 
 // Logs data
 const LOGS = {
@@ -72,13 +65,32 @@ const LOGS = {
   ]
 };
 
+function changePage(destination) {
+    const page_selected = document.getElementById(destination) || document.getElementById('about')
+    if (page_selected) { // If the page exists
+        PAGE_LIST.forEach(page_item => { // Hide all pages
+            page_item.classList.remove('shown')
+        })
+        page_selected.classList.remove('hidden')   // Show this page
+        page_selected.classList.add('shown')       // Make it flicker
+        CONTEXT.textContent = page_selected.getAttribute('context') // Update context
+        targetRate = 1
+        if (destination === 'gallery' && !galleryLoaded) { // Update gallery if need be
+            loadGallery()
+        }
+        targetRate = page_selected.getAttribute('rate') || 1
+        document.getElementById('page_title').textContent = destination // Update the page title
+        currentPage = destination
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+    changePage('about'); // Set initial page
     // Initialize blog content with first entry
     if (LOGS.blogs.length > 0) {
         document.getElementById('log_content').innerHTML = LOGS.blogs[0].content;
     }
 });
-
 
 BLOG_ITEMS.forEach(item => {
     item.addEventListener('click', function () {
@@ -92,9 +104,6 @@ BLOG_ITEMS.forEach(item => {
         }
     });
 });
-
-
-
 
 const COMMISSION = document.getElementById('commission')
 const COMMISSION_TYPES = document.querySelectorAll('.commission_type')
@@ -110,12 +119,10 @@ const COUNTER = document.getElementById('counter')
 // Vanity
 const CRT_SCAN_FX = document.getElementById('crt_scan_fx')
 
-/*-----------------| VARIABLES |-------------------------------------------------------------------------
-    Stuff that changes, mostly to do with lerping and page information.
--------------------------------------------------------------------------------------------------------*/
-
+/*-----------------| VARIABLES |-------------------------------------------------------------------------*/
 // Toggles
-let crtOn = JSON.parse(localStorage.getItem('crtOn') || true)
+let crtOn = true; // Set CRT state to always on
+
 let galleryLoaded = false
 let logLoaded = false
 
@@ -136,10 +143,7 @@ let commission_info = {}
 // Etc
 let currentPage = 'about'
 
-/*-----------------| GENERAL FUNCTIONS |------------------------------------------------------------------
-    Commonly used functions, querying CSS variables, lerping, etc.
--------------------------------------------------------------------------------------------------------*/
-
+/*-----------------| GENERAL FUNCTIONS |------------------------------------------------------------------*/
 // Update CSS variable value
 function CSS(VarName, VarProperty) {
     document.documentElement.style.setProperty('--' + VarName, VarProperty)
@@ -191,10 +195,7 @@ window.addEventListener('load', function() {
     mainLoop()
 })
 
-/*-----------------| PAGE HANDLING |--------------------------------------------------------------------
-    Handle when the user backtracks, loads, and reloads new pages.
--------------------------------------------------------------------------------------------------------*/
-
+/*-----------------| PAGE HANDLING |--------------------------------------------------------------------*/
 // Navigate to appropriate page if hash contains valid string
 if (window.location.hash) {
     const hashValue = window.location.hash.substring(1)
@@ -239,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
 // Change the topbar
 function updateContext(info) {
     if (info) {
@@ -262,10 +262,7 @@ function updateCRT() {
     }
 }
 
-/*-----------------| COMMISSION |------------------------------------------------------------------------
-    Fetch commission JSON and build the types list + updaters.
--------------------------------------------------------------------------------------------------------*/
-
+/*-----------------| COMMISSION |------------------------------------------------------------------------*/
 // Construct commission types
 fetchJSON('./json/commission.json')
 .then(data => {commission_info = data})
@@ -277,15 +274,13 @@ COMMISSION_TYPES.forEach(type => {
         type.classList.add('unfiltered')
         COMMISSION_DESCRIPTION.innerHTML = info[1]
         COMMISSION_PRICING.innerHTML = Object.entries(info[0])
-            .map(([key, value]) => `${key}: <span class="selectable"; style="color: #0f0 !important; text-shadow: #0d0 0 0 1vh;"><br>$${value}</span>`)
+            .map(([key, value]) => `${key}: <span class="selectable" style="color: #0f0 !important; text-shadow: #0d0 0 0 1vh;"><br>$${value}</span>`)
             .join('<br>')
     })
 })
 
-/*-----------------| BUTTONS |---------------------------------------------------------------------------
-    Bind all button functionality and sounds.
--------------------------------------------------------------------------------------------------------*/
-
+/*-----------------| BUTTONS |---------------------------------------------------------------------------*/
+// Bind all button functionality and sounds.
 function addGlowEffect(button) {
     button.classList.add('glow');
     setTimeout(() => {
@@ -294,24 +289,19 @@ function addGlowEffect(button) {
 }
 
 // Bind button to update context if it has any, and play some sounds
-
 function bindButton(button) {
-
     button.addEventListener('mouseenter', () => {updateContext(button.getAttribute('context'))})
-
     button.addEventListener('mouseleave', () => updateContext(document.getElementsByClassName('shown')[0].getAttribute('context')))
 }
 
 // Give most buttons generic sounds and events
 document.querySelectorAll('.navbar_button, .link, .external_button, .commission_type, #links .link').forEach(button => bindButton(button))
 
-
 // navbar buttons
 document.querySelectorAll('.navbar_button').forEach(button => { // Make all navbar buttons play sound & change to respective page
     const content = button.textContent.toLowerCase()
     button.addEventListener('mousedown', () => {
         addGlowEffect(button); // Add glow effect on click
-
         pushHash(content)
         changePage(content)
     })
@@ -332,4 +322,10 @@ fetchJSON('./json/buttons.json')
     })
 })
 
-bindButton(CRT_TOGGLE)
+bindButton(CRT_TOGGLE);
+
+// Set CRT to always be on
+document.body.classList.add('crt');
+CRT_TOGGLE_ICON.setAttribute('src', 'img/button/crt_on.svg');
+
+updateCRT(); // Ensure CRT is updated
