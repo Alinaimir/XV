@@ -61,7 +61,12 @@ const LOGS = {
       id: "SEED",
       date: "09/26",
       content: "Sample content for SEED blog entry"
-    }
+    },
+    {
+        id: "ONE",
+        date: "09/29",
+        content: "Sample content for ONE blog entry"
+     },
   ]
 };
 
