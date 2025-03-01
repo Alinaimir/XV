@@ -40,46 +40,7 @@ const LOGS = {
     {
       id: "LEFT",
       date: "10/01",
-      content: "    <h1>The Hollow, Betrayed, War-torn Love Poem</h1>
-    <p>Love was a whisper, a shadow in flames,<br>
-       A promise unspoken, now lost in the games.<br>
-       Betrayal, the sword, with a kiss on its edge,<br>
-       Cut through my heart, a blood-red pledge.</p>
-    
-    <p>Your smile, once tender, now sharp as a blade,<br>
-       A token of peace, but a war soon displayed.<br>
-       Sadistic in nature, you tore me apart,<br>
-       A battlefield forged deep within my heart.</p>
-    
-    <p>You fought with your silence, a soldier so cold,<br>
-       In the trenches of lies, your betrayal unfolds.<br>
-       I, a casualty, bleeding for trust,<br>
-       Yet still I returned, my heart a thin rust.</p>
-    
-    <p>Love, a soldier with no shield or sword,<br>
-       Waging its battles, though its cause is ignored.<br>
-       Hope was a traitor, whispering lies,<br>
-       While your love, like war, made me wear my disguise.</p>
-    
-    <p>In the chaos, I bled, yet still, I fought,<br>
-       Chasing the remnants of a love once sought.<br>
-       A war within, raging, fierce, and raw,<br>
-       But in your eyes, I found only flaw.</p>
-    
-    <p>Betrayed by the one who swore to defend,<br>
-       I now stand alone, a soul to amend.<br>
-       The battle is endless, my spirit worn thin,<br>
-       Yet I still love you, though it’s where I begin.</p>
-    
-    <p>In the trenches of love, where nothing’s pure,<br>
-       I fought for you, knowing the war would endure.<br>
-       You, the enemy, my heart the prize,<br>
-       And in the smoke, I saw through the lies.</p>
-    
-    <p>Love and betrayal, intertwined in the fight,<br>
-       In the war of the soul, there’s no wrong, no right.<br>
-       But still, I return, to the battlefield’s glare,<br>
-       For in your arms, I find despair.</p>"
+      content: "1"
     },
     {
       id: "FEEL",
