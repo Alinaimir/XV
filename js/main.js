@@ -36,39 +36,78 @@ const BLOG_ITEMS = document.querySelectorAll('.log_list_item'); // Select all bl
 
 // Logs data
 const LOGS = {
-  blogs: [
-    {
-      id: "LEFT",
-      date: "10/01",
-      content: "<i>Test</i>"
-    },
-    {
-      id: "FEEL",
-      date: "09/29",
-      content: "Sample content for FEEL blog entry"
-    },
-    {
-      id: "FOOL",
-      date: "09/28",
-      content: "Sample content for FOOL blog entry"
-    },
-    {
-      id: "WORK",
-      date: "09/27",
-      content: "Sample content for WORK blog entry"
-    },
-    {
-      id: "SEED",
-      date: "09/26",
-      content: "Sample content for SEED blog entry"
-    },
-    {
+    blogs: [
+      {
+        id: "POEM1",
+        date: "10/01",
+        content: `
+          <h1 style="color:rgb(255, 0, 0); text-align: center;">The Betrayed, War-torn Love</h1>
+<p style="color:rgb(255, 255, 255); font-family: 'Times New Roman', serif; font-size: 18px;">
+  Love was a whisper, a shadow in flames,<br>
+  A promise unspoken, now lost in the games.<br>
+  Betrayal, the sword, with a kiss on its edge,<br>
+  Cut through my heart, a blood-red pledge.<br>
+  Your smile, once tender, now sharp as a blade,<br>
+  A token of peace, but a war soon displayed.<br>
+  Sadistic in nature, you tore me apart,<br>
+  A battlefield forged deep within my heart.<br>
+  You fought with your silence, a soldier so cold,<br>
+  In the trenches of lies, your betrayal unfolds.<br>
+  I, a casualty, bleeding for trust,<br>
+  Yet still I returned, my heart a thin rust.<br>
+  Love, a soldier with no shield or sword,<br>
+  Waging its battles, though its cause is ignored.<br>
+  Hope was a traitor, whispering lies,<br>
+  While your love, like war, made me wear my disguise.<br>
+  In the chaos, I bled, yet still, I fought,<br>
+  Chasing the remnants of a love once sought.<br>
+  A war within, raging, fierce, and raw,<br>
+  But in your eyes, I found only flaw.<br>
+  Betrayed by the one who swore to defend,<br>
+  I now stand alone, a soul to amend.<br>
+  The battle is endless, my spirit worn thin,<br>
+  Yet I still love you, though it’s where I begin.<br>
+  In the trenches of love, where nothing’s pure,<br>
+  I fought for you, knowing the war would endure.<br>
+  You, the enemy, my heart the prize,<br>
+  And in the smoke, I saw through the lies.<br>
+  Love and betrayal, intertwined in the fight,<br>
+  In the war of the soul, there’s no wrong, no right.<br>
+  But still, I return, to the battlefield’s glare,<br>
+  For in your arms, I find despair.
+</p>
+        `
+      },
+      {
+        id: "FEEL",
+        date: "09/29",
+        content: "Sample content for FEEL blog entry"
+      },
+      {
+        id: "FOOL",
+        date: "09/28",
+        content: "Sample content for FOOL blog entry"
+      },
+      {
+        id: "WORK",
+        date: "09/27",
+        content: "Sample content for WORK blog entry"
+      },
+      {
+        id: "SEED",
+        date: "09/26",
+        content: "Sample content for SEED blog entry"
+      },
+      {
         id: "ONE",
         date: "09/29",
         content: "Sample content for ONE blog entry"
       },
-  ]
-};
+    ]
+  };
+  
+  
+
 
 function changePage(destination) {
     const page_selected = document.getElementById(destination) || document.getElementById('about')
