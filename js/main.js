@@ -40,7 +40,7 @@ const LOGS = {
     {
       id: "LEFT",
       date: "10/01",
-      content: "1"
+      content: "<i>Test</i>"
     },
     {
       id: "FEEL",
@@ -66,7 +66,7 @@ const LOGS = {
         id: "ONE",
         date: "09/29",
         content: "Sample content for ONE blog entry"
-     },
+      },
   ]
 };
 
